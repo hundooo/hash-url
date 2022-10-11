@@ -36,5 +36,24 @@ def index():
 
     return render_template('index.html')
 
+@app.route("/<hash>")
+def url_redirect(hash):
+    connection = get_db_connection()
+
+    id = hashids.decode(hash)
+    if id:
+        id = id[0]
+        url_data = connection.execute('SELECT original_url, clicks FROM urls'' WHERE id = (?)', (id,)).fetchone()
+        original_url = url_data['original_url']
+        clicks = url_data['clicks']
+
+        connection.execute('UPDATE urls SET clicks = ? WHERE id = ?', (clicks + 1, id))
+        connection.commit()
+        connection.close()
+        return redirect(original_url)
+    else:
+        flash('Invalid URL')
+        return redirect(url_for('index'))
+
 if __name__ == "__main__":
     app.run(debug=True)
