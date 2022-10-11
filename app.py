@@ -14,7 +14,7 @@ app.config['SECRET_KEY'] = uuid4().hex
 hashids = Hashids(min_length=4, salt=app.config['SECRET_KEY'])
 
 @app.route("/", methods=('GET', 'POST'))
-def hash_url():
+def index():
     connection = get_db_connection()
 
     if request.method == 'POST':
@@ -28,6 +28,10 @@ def hash_url():
         connection.commit()
         connection.close()
 
-        
+        url_id = url_data.lastrowid
+        hashid = hashids.encode(url_id)
+        hash_url = request.host_url + hashid
+
+        return render_template('index.html', hash_url=hash_url)
 
     return render_template('index.html')
