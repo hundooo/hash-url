@@ -24,7 +24,7 @@ def index():
             flash('The URL is required!')
             return redirect(url_for('index'))
         
-        url_data = connection.execute('INSERT INTO urls (original_rl) VALUES (?)', (url,))
+        url_data = connection.execute('INSERT INTO urls (original_url) VALUES (?)', (url,))
         connection.commit()
         connection.close()
 
@@ -35,3 +35,6 @@ def index():
         return render_template('index.html', hash_url=hash_url)
 
     return render_template('index.html')
+
+if __name__ == "__main__":
+    app.run(debug=True)
