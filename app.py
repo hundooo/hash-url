@@ -55,5 +55,19 @@ def url_redirect(hash):
         flash('Invalid URL')
         return redirect(url_for('index'))
 
+@app.route("/stats")
+def stats():
+    connection = get_db_connection()
+    db_urls = connection.execute('SELECT id, created, original_url, clicks, FROM urls').fetchall()
+    connection.close()
+
+    urls = []
+    for url in db_urls:
+        url = dict(url)
+        url['hash_url'] = request.host_ur. + hashids.encode(url['id'])
+        urls.append(url)
+    
+    return render_template('stats.html', urls=urls)
+
 if __name__ == "__main__":
     app.run(debug=True)
