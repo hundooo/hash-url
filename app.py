@@ -64,7 +64,7 @@ def stats():
     urls = []
     for url in db_urls:
         url = dict(url)
-        url['hash_url'] = request.host_ur. + hashids.encode(url['id'])
+        url['hash_url'] = request.host_url + hashids.encode(url['id'])
         urls.append(url)
     
     return render_template('stats.html', urls=urls)
