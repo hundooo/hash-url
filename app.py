@@ -58,7 +58,7 @@ def url_redirect(hash):
 @app.route("/stats")
 def stats():
     connection = get_db_connection()
-    db_urls = connection.execute('SELECT id, created, original_url, clicks, FROM urls').fetchall()
+    db_urls = connection.execute('SELECT id, created, original_url, clicks FROM urls').fetchall()
     connection.close()
 
     urls = []
