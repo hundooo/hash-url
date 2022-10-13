@@ -15,4 +15,8 @@ Finally, run the flask App with
 $ flask run
 ```
 ## Usage
+To shorten a URL enter it into the text box and click on Submit
+![alt text](https://github.com/hundooo/hash-url/blob/main/homePage.png)
 
+To view the stats page visit ```127.0.0.1:5000/stats```
+![alt text](https://github.com/hundooo/hash-url/blob/main/StatsPage.png)
