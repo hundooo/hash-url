@@ -1,5 +1,5 @@
 # hash-url
-A simple application to create and store distinct shortened URLs using hashid encoding and decoding. Additinally, provides a statistics page with time shortened url was created and number of clicks.
+An application to create and store distinct shortened URLs using hashid encoding and decoding. Additinally, provides a statistics page with time shortened url was created and number of clicks.
 
 ## Setup
 Start by activating the virutal environment if it isn't already activated
